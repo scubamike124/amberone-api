@@ -1,147 +1,166 @@
 {
-    "name":  "AmberOne API",
-    "version":  "1.0.0",
-    "tagline":  "Turn any website into build-ready mobile and desktop app projects.",
-    "baseUrl":  "https://hq.amberoneai.com",
-    "specUrl":  "https://raw.githubusercontent.com/scubamike124/amberone-api/main/openapi.json",
-    "repository":  "https://github.com/scubamike124/amberone-api",
-    "termsUrl":  "https://amberoneai.com/terms",
-    "privacyUrl":  "https://amberoneai.com/privacy",
-    "license":  {
-                    "code":  "MIT",
-                    "service":  "Commercial"
-                },
-    "categories":  {
-                       "rapidapi":  [
-                                        "Tools",
-                                        "Development"
-                                    ],
-                       "postman":  [
-                                       "Developer Tools"
-                                   ],
-                       "zyla":  [
-                                    "Development",
-                                    "Tools"
-                                ],
-                       "apilayer":  [
-                                        "Developer Tools"
-                                    ]
-                   },
-    "tags":  [
-                 "pwa",
-                 "capacitor",
-                 "android",
-                 "ios",
-                 "electron",
-                 "webview",
-                 "app-generator",
-                 "mobile",
-                 "wrapper",
-                 "site-to-app",
-                 "no-code"
-             ],
-    "shortDescription":  "Submit a URL, get back a build-ready Android, iOS, PWA, Electron or Capacitor project. Your signing keys never leave your machine.",
-    "longDescription":  "Submit a URL. The AmberOne API scans it for wrap compatibility, applies the fixes it safely can to the\ngenerated package, and returns a downloadable project you build yourself.\n\n**What you get is a project, not a compiled app.** Android and iOS outputs are Capacitor\nprojects ready for `gradlew assembleRelease` or Xcode\u0027s Archive — which also means your signing\nkeys never leave your machine. Nothing is compiled, signed, installed, or submitted on your behalf.\n\nEvery response uses the same envelope: `{ ok: true, data, requestId }` or\n`{ ok: false, error: { code, message }, requestId }`. Branch on `ok`; match on `error.code`,\nwhich is stable. Quote `requestId` in any support request.",
-    "endpointCount":  9,
-    "authentication":  "Bearer token (also accepts X-API-Key)",
-    "sandbox":  "Keys prefixed wrap_test_ run the full pipeline and are never billed.",
-    "tiers":  [
-                  {
-                      "slug":  "free",
-                      "wrapsPerPeriod":  3,
-                      "requestsPerMinute":  20,
-                      "concurrentJobs":  1,
-                      "scanPages":  5,
-                      "artifactRetentionDays":  7,
-                      "platforms":  [
-                                        "PWA"
-                                    ],
-                      "autoFix":  false,
-                      "priceUsd":  null
-                  },
-                  {
-                      "slug":  "single",
-                      "wrapsPerPeriod":  1,
-                      "requestsPerMinute":  60,
-                      "concurrentJobs":  1,
-                      "scanPages":  25,
-                      "artifactRetentionDays":  30,
-                      "platforms":  [
-                                        "PWA",
-                                        "CAPACITOR",
-                                        "ANDROID_PROJECT",
-                                        "IOS_PROJECT"
-                                    ],
-                      "autoFix":  true,
-                      "priceUsd":  null
-                  },
-                  {
-                      "slug":  "developer",
-                      "wrapsPerPeriod":  10,
-                      "requestsPerMinute":  120,
-                      "concurrentJobs":  2,
-                      "scanPages":  50,
-                      "artifactRetentionDays":  90,
-                      "platforms":  [
-                                        "PWA",
-                                        "CAPACITOR",
-                                        "ANDROID_PROJECT",
-                                        "IOS_PROJECT"
-                                    ],
-                      "autoFix":  true,
-                      "priceUsd":  null
-                  },
-                  {
-                      "slug":  "professional",
-                      "wrapsPerPeriod":  50,
-                      "requestsPerMinute":  300,
-                      "concurrentJobs":  5,
-                      "scanPages":  150,
-                      "artifactRetentionDays":  180,
-                      "platforms":  [
-                                        "PWA",
-                                        "CAPACITOR",
-                                        "ELECTRON",
-                                        "ANDROID_PROJECT",
-                                        "IOS_PROJECT"
-                                    ],
-                      "autoFix":  true,
-                      "priceUsd":  null
-                  },
-                  {
-                      "slug":  "agency",
-                      "wrapsPerPeriod":  250,
-                      "requestsPerMinute":  600,
-                      "concurrentJobs":  15,
-                      "scanPages":  300,
-                      "artifactRetentionDays":  365,
-                      "platforms":  [
-                                        "PWA",
-                                        "CAPACITOR",
-                                        "ELECTRON",
-                                        "ANDROID_PROJECT",
-                                        "IOS_PROJECT"
-                                    ],
-                      "autoFix":  true,
-                      "priceUsd":  null
-                  },
-                  {
-                      "slug":  "enterprise",
-                      "wrapsPerPeriod":  "unlimited",
-                      "requestsPerMinute":  1200,
-                      "concurrentJobs":  50,
-                      "scanPages":  1000,
-                      "artifactRetentionDays":  730,
-                      "platforms":  [
-                                        "PWA",
-                                        "CAPACITOR",
-                                        "ELECTRON",
-                                        "ANDROID_PROJECT",
-                                        "IOS_PROJECT"
-                                    ],
-                      "autoFix":  true,
-                      "priceUsd":  null
-                  }
-              ],
-    "pricingStatus":  "not_set"
+  "name": "AmberOne API",
+  "version": "1.0.0",
+  "tagline": "Turn any website into build-ready mobile and desktop app projects.",
+  "baseUrl": "https://hq.amberoneai.com",
+  "specUrl": "https://hq.amberoneai.com/api/v1/openapi.json",
+  "repository": "https://github.com/scubamike124/amberone-api",
+  "termsUrl": "https://amberoneai.com/terms",
+  "privacyUrl": "https://amberoneai.com/privacy",
+  "license": {
+    "code": "MIT",
+    "service": "Commercial"
+  },
+  "categories": {
+    "rapidapi": [
+      "Tools",
+      "Development"
+    ],
+    "postman": [
+      "Developer Tools"
+    ],
+    "zyla": [
+      "Development",
+      "Tools"
+    ],
+    "apilayer": [
+      "Developer Tools"
+    ]
+  },
+  "tags": [
+    "pwa",
+    "capacitor",
+    "android",
+    "ios",
+    "electron",
+    "webview",
+    "app-generator",
+    "mobile",
+    "wrapper",
+    "site-to-app",
+    "no-code"
+  ],
+  "shortDescription": "Submit a URL, get back a build-ready Android, iOS, PWA, Electron or Capacitor project. Your signing keys never leave your machine.",
+  "longDescription": "Submit a URL. The AmberOne API scans it for wrap compatibility, applies the fixes it safely can to the\ngenerated package, and returns a downloadable project you build yourself.\n\n**What you get is a project, not a compiled app.** Android and iOS outputs are Capacitor\nprojects ready for `gradlew assembleRelease` or Xcode's Archive — which also means your signing\nkeys never leave your machine. Nothing is compiled, signed, installed, or submitted on your behalf.\n\nEvery response uses the same envelope: `{ ok: true, data, requestId }` or\n`{ ok: false, error: { code, message }, requestId }`. Branch on `ok`; match on `error.code`,\nwhich is stable. Quote `requestId` in any support request.",
+  "endpointCount": 9,
+  "authentication": "Bearer token (also accepts X-API-Key)",
+  "sandbox": "Keys prefixed wrap_test_ run the full pipeline and are never billed.",
+  "tiers": [
+    {
+      "slug": "free",
+      "wrapsPerPeriod": 3,
+      "requestsPerMinute": 20,
+      "concurrentJobs": 1,
+      "scanPages": 5,
+      "artifactRetentionDays": 7,
+      "platforms": [
+        "PWA"
+      ],
+      "autoFix": false,
+      "recommendedPriceUsd": 0,
+      "billing": "free",
+      "pricingRationale": "Three wraps is enough to evaluate the output before paying.",
+      "costPerWrapUsd": null
+    },
+    {
+      "slug": "single",
+      "wrapsPerPeriod": 1,
+      "requestsPerMinute": 60,
+      "concurrentJobs": 1,
+      "scanPages": 25,
+      "artifactRetentionDays": 30,
+      "platforms": [
+        "PWA",
+        "CAPACITOR",
+        "ANDROID_PROJECT",
+        "IOS_PROJECT"
+      ],
+      "autoFix": true,
+      "recommendedPriceUsd": 29,
+      "billing": "one_time",
+      "pricingRationale": "Undercuts a WebViewGold per-platform licence; no subscription for a one-off job.",
+      "costPerWrapUsd": 29
+    },
+    {
+      "slug": "developer",
+      "wrapsPerPeriod": 10,
+      "requestsPerMinute": 120,
+      "concurrentJobs": 2,
+      "scanPages": 50,
+      "artifactRetentionDays": 90,
+      "platforms": [
+        "PWA",
+        "CAPACITOR",
+        "ANDROID_PROJECT",
+        "IOS_PROJECT"
+      ],
+      "autoFix": true,
+      "recommendedPriceUsd": 49,
+      "billing": "monthly",
+      "pricingRationale": "$4.90/wrap. Lands beside Median self-serve (~$41/mo) but gives 10 apps, not one.",
+      "costPerWrapUsd": 4.9
+    },
+    {
+      "slug": "professional",
+      "wrapsPerPeriod": 50,
+      "requestsPerMinute": 300,
+      "concurrentJobs": 5,
+      "scanPages": 150,
+      "artifactRetentionDays": 180,
+      "platforms": [
+        "PWA",
+        "CAPACITOR",
+        "ELECTRON",
+        "ANDROID_PROJECT",
+        "IOS_PROJECT"
+      ],
+      "autoFix": true,
+      "recommendedPriceUsd": 149,
+      "billing": "monthly",
+      "pricingRationale": "$2.98/wrap. Between the $60 and $249 tiers the category has trained buyers to expect.",
+      "costPerWrapUsd": 2.98
+    },
+    {
+      "slug": "agency",
+      "wrapsPerPeriod": 250,
+      "requestsPerMinute": 600,
+      "concurrentJobs": 15,
+      "scanPages": 300,
+      "artifactRetentionDays": 365,
+      "platforms": [
+        "PWA",
+        "CAPACITOR",
+        "ELECTRON",
+        "ANDROID_PROJECT",
+        "IOS_PROJECT"
+      ],
+      "autoFix": true,
+      "recommendedPriceUsd": 399,
+      "billing": "monthly",
+      "pricingRationale": "$1.60/wrap. One outsourced PWA build (~$2,000) pays for five months.",
+      "costPerWrapUsd": 1.6
+    },
+    {
+      "slug": "enterprise",
+      "wrapsPerPeriod": "unlimited",
+      "requestsPerMinute": 1200,
+      "concurrentJobs": 50,
+      "scanPages": 1000,
+      "artifactRetentionDays": 730,
+      "platforms": [
+        "PWA",
+        "CAPACITOR",
+        "ELECTRON",
+        "ANDROID_PROJECT",
+        "IOS_PROJECT"
+      ],
+      "autoFix": true,
+      "recommendedPriceUsd": null,
+      "billing": "contact_sales",
+      "pricingRationale": "Unlimited wraps and 1200 rpm are negotiated, not listed.",
+      "costPerWrapUsd": null
+    }
+  ],
+  "pricingStatus": "recommended_pending_owner_confirmation",
+  "pricingNote": "Prices are researched recommendations, not live prices. No Stripe product exists for any tier yet, so nothing here can charge a customer. Competitive anchors: Median.co ~$490/yr self-serve to $18k+ enterprise; WebViewGold one-time per app per platform; Adalo-class $60 and $249/mo; outsourced PWA build ~$2,000. Those are managed services — this API returns a project and stops, so it prices below them."
 }
