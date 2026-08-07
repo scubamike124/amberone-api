@@ -1,7 +1,7 @@
 [project]
 name = "amberone-api"
 version = "1.0.0"
-description = "Official Python SDK for the AmberOne API — turn any website into build-ready app projects."
+description = "Official Python SDK for the AmberOne API â€” turn any website into build-ready app projects."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }

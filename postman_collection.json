@@ -1,0 +1,339 @@
+{
+  "info": {
+    "name": "AmberOne API",
+    "description": "Submit a URL. The AmberOne API scans it for wrap compatibility, applies the fixes it safely can to the\ngenerated package, and returns a downloadable project you build yourself.\n\n**What you get is a project, not a compiled app.** Android and iOS outputs are Capacitor\nprojects ready for `gradlew assembleRelease` or Xcode's Archive — which also means your signing\nkeys never leave your machine. Nothing is compiled, signed, installed, or submitted on your behalf.\n\nEvery response uses the same envelope: `{ ok: true, data, requestId }` or\n`{ ok: false, error: { code, message }, requestId }`. Branch on `ok`; match on `error.code`,\nwhich is stable. Quote `requestId` in any support request.\n\n**Base URL:** `https://hq.amberoneai.com`\n\nSet the `apiKey` collection variable to a key from your dashboard. Keys\nbeginning `wrap_test_` run the full pipeline and are never billed, so you\ncan run every request in this collection without spending quota.\n\nSource and SDKs: https://github.com/scubamike124/amberone-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{apiKey}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://hq.amberoneai.com",
+      "type": "string"
+    },
+    {
+      "key": "apiKey",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "account",
+      "description": "Key, plan and usage.",
+      "item": [
+        {
+          "name": "Account, plan and usage",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/account",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "account"
+              ]
+            },
+            "description": "Returns the account the key belongs to, the plan's limits, and usage for the current billing period. Call this first to confirm a key works — it consumes no wrap quota."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "scan",
+      "description": "Compatibility scanning.",
+      "item": [
+        {
+          "name": "Scan a site for wrap compatibility",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/scan",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "scan"
+              ]
+            },
+            "description": "Runs the pre-wrap compatibility scan synchronously and returns every check with the evidence behind it. Does not generate a package and does not consume wrap quota.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://your-site.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "jobs",
+      "description": "Wrap jobs and their artifacts.",
+      "item": [
+        {
+          "name": "Submit a wrap job",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/jobs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "jobs"
+              ]
+            },
+            "description": "Queues a job that scans the site, applies supported fixes to the generated package, and produces a downloadable project archive. Returns 202 immediately — poll GET /api/v1/jobs/{id} for status.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://your-site.com\",\n  \"appName\": \"My App\",\n  \"platforms\": [\n    \"PWA\"\n  ],\n  \"themeColor\": \"#4F46E5\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List jobs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/jobs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "jobs"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "QUEUED",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "cursor",
+                  "value": "string",
+                  "description": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Lists this account's jobs, newest first, with cursor pagination."
+          },
+          "response": []
+        },
+        {
+          "name": "Get a job",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/jobs/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "jobs",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "job_01H8XK2M9QZ",
+                  "description": "Job id."
+                }
+              ]
+            },
+            "description": "Returns status, progress, the scan report, the fix report and the certification report. Poll this after submitting a job."
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel a job",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/jobs/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "jobs",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "job_01H8XK2M9QZ",
+                  "description": "Job id."
+                }
+              ]
+            },
+            "description": "Cancels a job that has not reached a terminal state. Finished jobs return 409."
+          },
+          "response": []
+        },
+        {
+          "name": "Get job logs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/jobs/:id/logs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "jobs",
+                ":id",
+                "logs"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "200",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "level",
+                  "value": "info",
+                  "description": "",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "job_01H8XK2M9QZ",
+                  "description": "Job id."
+                }
+              ]
+            },
+            "description": "Returns the job's log lines, oldest first."
+          },
+          "response": []
+        },
+        {
+          "name": "Download the generated project",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/jobs/:id/download",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "jobs",
+                ":id",
+                "download"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "job_01H8XK2M9QZ",
+                  "description": "Job id."
+                }
+              ]
+            },
+            "description": "Streams the project archive as a zip. The X-Artifact-SHA256 response header carries the digest published in the certification report, so the download can be verified. Available once the job is COMPLETED."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "usage",
+      "description": "Metered consumption.",
+      "item": [
+        {
+          "name": "Usage detail",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/usage",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "usage"
+              ],
+              "query": [
+                {
+                  "key": "days",
+                  "value": "30",
+                  "description": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Usage broken down by kind and day for the requested window, with live and test separated."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

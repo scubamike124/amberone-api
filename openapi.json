@@ -7,11 +7,12 @@
     "description": "Submit a URL. The AmberOne API scans it for wrap compatibility, applies the fixes it safely can to the\ngenerated package, and returns a downloadable project you build yourself.\n\n**What you get is a project, not a compiled app.** Android and iOS outputs are Capacitor\nprojects ready for `gradlew assembleRelease` or Xcode's Archive — which also means your signing\nkeys never leave your machine. Nothing is compiled, signed, installed, or submitted on your behalf.\n\nEvery response uses the same envelope: `{ ok: true, data, requestId }` or\n`{ ok: false, error: { code, message }, requestId }`. Branch on `ok`; match on `error.code`,\nwhich is stable. Quote `requestId` in any support request.",
     "license": {
       "name": "Commercial",
-      "url": "https://hq.amberoneai.com"
+      "url": "https://amberoneai.com/terms"
     },
+    "termsOfService": "https://amberoneai.com/terms",
     "contact": {
-      "name": "AmberOne",
-      "url": "https://hq.amberoneai.com"
+      "name": "AmberOne API support",
+      "url": "https://amberoneai.com/privacy"
     }
   },
   "servers": [
