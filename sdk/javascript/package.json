@@ -1,0 +1,25 @@
+{
+  "name": "@amberone/api",
+  "version": "1.0.0",
+  "description": "Official JavaScript/TypeScript SDK for the AmberOne API — turn any website into build-ready app projects.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
+  "files": ["dist", "README.md"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scubamike124/amberone-api.git",
+    "directory": "sdk/javascript"
+  },
+  "homepage": "https://github.com/scubamike124/amberone-api#readme",
+  "bugs": { "url": "https://github.com/scubamike124/amberone-api/issues" },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["amberone", "pwa", "capacitor", "android", "ios", "webview", "wrapper", "app"],
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "devDependencies": { "typescript": "^5.5.0" }
+}

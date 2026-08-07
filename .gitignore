@@ -1,0 +1,14 @@
+node_modules/
+dist/
+__pycache__/
+*.egg-info/
+.env
+.env.*
+*.zip
+
+build/
+*.pyc
+
+
+!sdk/javascript/dist/
+!sdk/javascript/dist/**

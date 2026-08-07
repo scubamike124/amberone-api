@@ -1,0 +1,17 @@
+[project]
+name = "amberone-api"
+version = "1.0.0"
+description = "Official Python SDK for the AmberOne API — turn any website into build-ready app projects."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = ["requests>=2.28"]
+keywords = ["amberone", "pwa", "capacitor", "android", "ios", "webview", "wrapper"]
+urls = { Homepage = "https://github.com/scubamike124/amberone-api", Repository = "https://github.com/scubamike124/amberone-api" }
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["amberone_api*", "wrapper_api*"]
