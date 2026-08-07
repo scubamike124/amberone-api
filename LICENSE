@@ -19,21 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-## Scope — what this licence does and does not cover
-
-This MIT licence covers **the contents of this repository**: the JavaScript and
-Python SDKs, the example projects, the OpenAPI document, and the documentation.
-Use them freely, including commercially.
-
-It does **not** licence the hosted AmberOne API service itself. Access to the
-service is governed by the commercial terms at https://amberoneai.com/terms and
-by the plan you subscribe to. Nothing here grants a right to use the service
-beyond those terms, and nothing there restricts your use of the client code
-above.
-
-The distinction matters in practice: you may fork this SDK, vendor it, or ship
-it inside a closed-source product. You may not resell access to the API itself
-without a separate agreement.
