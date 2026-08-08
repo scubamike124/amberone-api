@@ -268,6 +268,7 @@ openapi.json              Generated spec — do not hand-edit
 postman_collection.json   Postman v2.1, generated from the spec
 listing.json              Marketplace metadata: categories, tags, tiers
 MARKETPLACE.md            Listing plan and status
+SUBMISSIONS.md            Ready-to-paste copy for each marketplace
 CHANGELOG.md              Released changes
 SECURITY.md               Vulnerability reporting
 LICENSE                   MIT, covering this repository
