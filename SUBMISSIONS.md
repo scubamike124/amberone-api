@@ -59,11 +59,15 @@ https://go.postman.co/workspace/919be24a-0cf3-4f76-84af-288315c36b8e
 **What replaces it, for nothing:** the collection is public on GitHub, so any
 developer can import it by URL without either side holding a Postman plan:
 
-
+```
+https://raw.githubusercontent.com/scubamike124/amberone-api/main/postman_collection.json
+```
 
 Postman → Import → Link → paste. That is most of the value of a listing, minus
-the discovery surface. Revisit if Postman changes the plan again or once revenue
+the discovery surface. Revisit if Postman changes the plan again, or once revenue
 makes $19/month uninteresting.
+
+---
 
 ## 2. GitHub — already live
 
