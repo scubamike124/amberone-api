@@ -137,9 +137,22 @@ archive = client.download(job["id"])   # verifies the published SHA-256
 Both SDKs verify the downloaded archive against the hash the certification
 report published, and raise rather than hand you bytes that do not match.
 
-> **Registry note:** GitHub is the source of truth today. npm / PyPI registry
-> publish follows once org tokens are enabled for the `registry_publish`
-> workflow. Until then, install from this repository or a release tarball.
+> **Registry note.** The registry publishes are pending a 2FA step, so
+> `npm install amberone-api` and `pip install amberone-api` do not resolve yet.
+> Both packages are attached to the
+> [v1.0.0 release](https://github.com/scubamike124/amberone-api/releases/tag/v1.0.0)
+> and install directly today:
+>
+> ```bash
+> npm install https://github.com/scubamike124/amberone-api/releases/download/v1.0.0/amberone-api-1.0.0.tgz
+> ```
+>
+> ```bash
+> pip install https://github.com/scubamike124/amberone-api/releases/download/v1.0.0/amberone_api-1.0.0-py3-none-any.whl
+> ```
+>
+> These are the exact artifacts that will go to the registries — same bytes,
+> same checksums. Nothing changes in your code when the registry names go live.
 
 ---
 
