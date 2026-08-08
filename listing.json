@@ -59,7 +59,49 @@
       "autoFix": false,
       "recommendedPriceUsd": 0,
       "billing": "free",
+      "sellable": true,
       "pricingRationale": "Three wraps is enough to evaluate the output before paying.",
+      "costPerWrapUsd": null
+    },
+    {
+      "slug": "starter",
+      "wrapsPerPeriod": 10,
+      "requestsPerMinute": 120,
+      "concurrentJobs": 2,
+      "scanPages": 50,
+      "artifactRetentionDays": 90,
+      "platforms": [
+        "PWA",
+        "CAPACITOR",
+        "ANDROID_PROJECT",
+        "IOS_PROJECT"
+      ],
+      "autoFix": true,
+      "recommendedPriceUsd": 79,
+      "billing": "monthly",
+      "sellable": true,
+      "pricingRationale": "AmberOne Starter. Platform price; the 10 wraps included match what a $49 standalone tier would sell.",
+      "costPerWrapUsd": null
+    },
+    {
+      "slug": "growth",
+      "wrapsPerPeriod": 50,
+      "requestsPerMinute": 300,
+      "concurrentJobs": 5,
+      "scanPages": 150,
+      "artifactRetentionDays": 180,
+      "platforms": [
+        "PWA",
+        "CAPACITOR",
+        "ELECTRON",
+        "ANDROID_PROJECT",
+        "IOS_PROJECT"
+      ],
+      "autoFix": true,
+      "recommendedPriceUsd": 249,
+      "billing": "monthly",
+      "sellable": true,
+      "pricingRationale": "AmberOne Growth. Platform price; the 50 wraps included match what a $149 standalone tier would sell.",
       "costPerWrapUsd": null
     },
     {
@@ -78,7 +120,8 @@
       "autoFix": true,
       "recommendedPriceUsd": 29,
       "billing": "one_time",
-      "pricingRationale": "Undercuts a WebViewGold per-platform licence; no subscription for a one-off job.",
+      "sellable": false,
+      "pricingRationale": "Standalone only. Undercuts a WebViewGold per-platform licence; no subscription for a one-off job.",
       "costPerWrapUsd": 29
     },
     {
@@ -97,7 +140,8 @@
       "autoFix": true,
       "recommendedPriceUsd": 49,
       "billing": "monthly",
-      "pricingRationale": "$4.90/wrap. Lands beside Median self-serve (~$41/mo) but gives 10 apps, not one.",
+      "sellable": false,
+      "pricingRationale": "Standalone only. $4.90/wrap, beside Median self-serve (~$41/mo) but 10 apps rather than one.",
       "costPerWrapUsd": 4.9
     },
     {
@@ -117,7 +161,8 @@
       "autoFix": true,
       "recommendedPriceUsd": 149,
       "billing": "monthly",
-      "pricingRationale": "$2.98/wrap. Between the $60 and $249 tiers the category has trained buyers to expect.",
+      "sellable": false,
+      "pricingRationale": "Standalone only. $2.98/wrap, between the $60 and $249 tiers the category has trained buyers to expect.",
       "costPerWrapUsd": 2.98
     },
     {
@@ -137,7 +182,8 @@
       "autoFix": true,
       "recommendedPriceUsd": 399,
       "billing": "monthly",
-      "pricingRationale": "$1.60/wrap. One outsourced PWA build (~$2,000) pays for five months.",
+      "sellable": false,
+      "pricingRationale": "Standalone only. $1.60/wrap; one outsourced PWA build (~$2,000) pays for five months.",
       "costPerWrapUsd": 1.6
     },
     {
@@ -157,10 +203,12 @@
       "autoFix": true,
       "recommendedPriceUsd": null,
       "billing": "contact_sales",
+      "sellable": true,
       "pricingRationale": "Unlimited wraps and 1200 rpm are negotiated, not listed.",
       "costPerWrapUsd": null
     }
   ],
-  "pricingStatus": "recommended_pending_owner_confirmation",
-  "pricingNote": "Prices are researched recommendations, not live prices. No Stripe product exists for any tier yet, so nothing here can charge a customer. Competitive anchors: Median.co ~$490/yr self-serve to $18k+ enterprise; WebViewGold one-time per app per platform; Adalo-class $60 and $249/mo; outsourced PWA build ~$2,000. Those are managed services — this API returns a project and stops, so it prices below them."
+  "packaging": "bundled",
+  "pricingStatus": "bundled_into_amberone_plans",
+  "pricingNote": "This API is a feature of the AmberOne subscription, not a separate SKU. Buyers subscribe to AmberOne Starter ($79/mo, 10 wraps) or Growth ($249/mo, 50 wraps); Enterprise is unlimited and negotiated. Those are the platform's own prices from src/lib/pricing.ts. The standalone tiers carry `sellable: false` and exist only for marketplaces that require a per-API price — nothing subscribes to them. Competitive anchors for the bundled allowance: Median.co ~$490/yr self-serve to $18k+ enterprise; WebViewGold one-time per app per platform; Adalo-class $60 and $249/mo; outsourced PWA build ~$2,000. Those are managed services — this API returns a project and stops, so it prices below them."
 }
