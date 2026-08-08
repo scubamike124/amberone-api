@@ -99,23 +99,65 @@ amberone-api   sdk/javascript   MIT   npm
 amberone-api   sdk/python       MIT   PyPI
 ```
 
-**npm needs a Classic *Automation* token — nothing else works.**
+### npm — the ground shifted, and chasing a token is the wrong fight
 
-The account enforces 2FA on publishing. Three token types behave differently:
+Two token types were tried. Each failed differently, and the difference matters:
 
-| Token type | Result |
-|---|---|
-| Granular / read-only | `403 Forbidden` — authenticates, cannot write |
-| Classic → Publish | `EOTP` — still demands a one-time password |
-| **Classic → Automation** | **publishes; bypasses 2FA by design** |
+| Token type | Result | What it means |
+|---|---|---|
+| Granular, read-only | `403 Forbidden` | authenticates, cannot write |
+| Granular, read-write | `EOTP` | permissions are correct; 2FA blocks it |
 
-Automation tokens exist precisely for CI, which is why they are the only kind
-that completes an unattended publish against a 2FA-enforced account. Generate at
-npmjs.com → Access Tokens → Generate New Token → Classic → Automation, and store
-it in the vault as `NPM_TOKEN`.
+Reaching `EOTP` is progress, not a dead end — a read-only token never gets that
+far. Publishing needs a one-time password from an authenticator, which no
+unattended process can supply. That is the setting working as intended.
 
-PyPI has no equivalent obstacle: `PYPI_TOKEN`, or a trusted publisher configured
-once against this repo, and it publishes.
+The instinct is to hunt for a token type that bypasses 2FA. Do not: npm spent
+2026 closing exactly that path. Bypass-2FA granular tokens were restricted in
+July 2026, and npm has stated publishing moves to OIDC trusted publishing in
+**January 2027**, with tokens reduced to staging a publish that a maintainer
+approves. A token that skips 2FA is building on something with a published
+expiry date.
+
+**Two steps, and the first takes thirty seconds:**
+
+1. **Publish this first version by hand.** From `sdk/javascript`, run
+   `npm publish --access public` and type the OTP when prompted. Once.
+2. **Then configure trusted publishing** on npmjs.com for `amberone-api`,
+   pointing at this repo and `.github/workflows/publish.yml`. Every release after
+   that is a git tag with no token anywhere.
+
+The manual publish comes first because trusted publishing is configured on a
+package that already exists. It is the ordering, not a workaround.
+
+---
+
+### PyPI — exactly how to make the token
+
+Nothing else waits on this; do it when there are five minutes.
+
+1. **pypi.org → log in**, creating the account if there is not one.
+2. **Enable 2FA** if it is not on. PyPI requires it for uploads. Unlike npm this
+   does *not* block automation — on PyPI the API token **is** the second factor,
+   so a token keeps working unattended.
+3. **Account settings → API tokens → Add API token.**
+4. Name it something recognisable later, e.g. `amberone-api publish`.
+5. **Scope: "Entire account".** This matters — `amberone-api` does not exist on
+   PyPI yet, and a project-scoped token cannot create a project that is not there.
+   Account scope is needed for the **first** upload only.
+6. **Copy it.** It starts `pypi-` and is shown exactly once.
+7. Store it in the vault as `PYPI_TOKEN`.
+
+**Then narrow it.** After the first successful upload, create a second token
+scoped to just the `amberone-api` project, replace `PYPI_TOKEN` with it, and
+delete the account-scoped one. An account-scoped token can publish to every
+project you own, and there is no reason to keep that alive once it has done its
+single job.
+
+Better still, configure **trusted publishing**: PyPI → project → Publishing →
+add a GitHub publisher for this repo and `publish.yml`. That removes the stored
+token in favour of a short-lived credential per workflow run. The workflow
+already attempts trusted publishing first and falls back to the token.
 
 Then push a `v*` tag — `.github/workflows/publish.yml` does the rest, npm with
 `--provenance`. Missing secrets skip their job rather than failing the run.
@@ -193,8 +235,8 @@ without help.
 | Channel | Blocked on |
 |---|---|
 | GitHub | — **live** |
-| Postman | **one UI click** — workspace + collection already created |
-| npm | a Classic **Automation** token (2FA blocks other types) |
+| Postman | **one UI click** — workspace + collection created and verified |
+| npm | one manual publish + OTP, then trusted publishing |
 | PyPI | `PYPI_TOKEN` |
 | Awesome REST / Public APIs | ready |
 | RapidAPI | PayPal payout + reseller-pricing decision |
