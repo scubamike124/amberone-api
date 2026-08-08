@@ -16,20 +16,17 @@ curl -X POST https://hq.amberoneai.com/api/v1/jobs \
 Public repository: [scubamike124/amberone-api](https://github.com/scubamike124/amberone-api)  
 Accounts, billing, and keys: [hq.amberoneai.com](https://hq.amberoneai.com)
 
-> ### Status: pre-launch
+> ### Status: live
 >
-> **The endpoints are not open for public sign-up yet.** If you run the call
-> above today it will return `401`, and that is not your key being wrong.
+> The API is serving requests. Sign up at [Amber HQ](https://hq.amberoneai.com),
+> create a key, and the quick start below works as written.
 >
-> Everything else here is real and finished: the spec is generated from the same
-> schemas the server validates against, both SDKs are certified end to end
-> against a live instance — real jobs submitted, artifacts downloaded, hashes
-> verified — and the examples run. Read them, import the collection, tell us
-> what is missing before it ships.
->
-> Star or watch the repo to hear when keys open.
+> Verified end to end on production: signup, key issuance, `/account`, `/scan`,
+> `/jobs` and `/usage` all answer. A key beginning `wrap_test_` runs the full
+> pipeline and is never billed, so you can evaluate the whole thing before
+> spending anything.
 
-**Try it without an account:** import
+**Prefer to look before signing up?** Import
 [`postman_collection.json`](./postman_collection.json) into Postman. Every
 endpoint is there with a working example body. Set the `apiKey` variable when
 you have one — keys beginning `wrap_test_` run the full pipeline and are never
