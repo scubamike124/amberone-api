@@ -225,6 +225,39 @@ without help.
 
 ## Status
 
+### Free channels, 2026-08-08
+
+| Channel | State | Evidence |
+|---|---|---|
+| **GitHub repo** | ✅ live | public, MIT, 15 topics |
+| **GitHub Releases** | ✅ live | v1.0.0, 5 assets; install-from-URL tested working |
+| **GitHub Pages** | ✅ live | https://scubamike124.github.io/amberone-api/ → 200 |
+| **public-apis** | ⏳ submitted | [PR #6800](https://github.com/public-apis/public-apis/pull/6800), open, +1 |
+| **APIs.guru** | ⏳ submitted | [issue #2984](https://github.com/APIs-guru/openapi-directory/issues/2984), open |
+| **Awesome REST** | ⏭️ not eligible | it lists *tools for building* REST APIs, not public APIs |
+| **JSR** | ⏭️ blocked | scope creation returns `401 missingAuthentication` — needs a GitHub OAuth session |
+| **apilist.fun** | ❌ failed | POST returned `201` with body `{"msg":"error"}`; not listed afterwards |
+
+**Release assets double as a registry.** npm and PyPI are postponed behind 2FA,
+so both packages are attached to the release and install directly — verified,
+not assumed:
+
+```bash
+npm install https://github.com/scubamike124/amberone-api/releases/download/v1.0.0/amberone-api-1.0.0.tgz
+```
+
+A clean install from that URL was run and the module imported: `AmberOneClient`,
+`AmberOneApiError`, and all six methods present.
+
+**Notes on the two skips.** Awesome REST's only API-listing section is "Public
+REST APIs To Use In Tests", which AmberOne is not — submitting would be
+off-topic in a curated list, which costs more than it gains. JSR needs one
+manual step: sign in at jsr.io with GitHub and create the `@amberone` scope
+(both `@amberone` and `@amberoneai` are free). After that, publishing runs from
+GitHub Actions over OIDC with no token at all.
+
+---
+
 | Channel | Blocked on |
 |---|---|
 | GitHub | — **live** |

@@ -13,6 +13,7 @@ curl -X POST https://hq.amberoneai.com/api/v1/jobs \
   -d '{"url":"https://your-site.com","platforms":["PWA","ANDROID_PROJECT"]}'
 ```
 
+Documentation: [scubamike124.github.io/amberone-api](https://scubamike124.github.io/amberone-api/)  
 Public repository: [scubamike124/amberone-api](https://github.com/scubamike124/amberone-api)  
 Accounts, billing, and keys: [hq.amberoneai.com](https://hq.amberoneai.com)
 
