@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AmberOne API — reference</title>
+  <meta name="description" content="Turn any website into a build-ready Android, iOS, PWA, Electron or Capacitor project. REST API reference." />
+
+  <!-- Open Graph: these are what a link preview shows when the docs get shared. -->
+  <meta property="og:title" content="AmberOne API" />
+  <meta property="og:description" content="Submit a URL, get back a build-ready app project. Your signing keys never leave your machine." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scubamike124.github.io/amberone-api/" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>" />
+  <style>
+    :root { color-scheme: light dark; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    header {
+      padding: 2.5rem 1.5rem 2rem;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #fff;
+    }
+    .wrap { max-width: 62rem; margin: 0 auto; }
+    h1 { margin: 0 0 .35rem; font-size: clamp(1.6rem, 4vw, 2.2rem); }
+    .tag { margin: 0 0 1.25rem; opacity: .85; font-size: 1.05rem; }
+    .row { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .btn {
+      display: inline-block; padding: .5rem .95rem; border-radius: 6px;
+      background: #f5a623; color: #1a1a2e; text-decoration: none; font-weight: 600; font-size: .92rem;
+    }
+    .btn.ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.35); }
+    .note { max-width: 62rem; margin: 1.25rem auto; padding: 0 1.5rem; }
+    code {
+      background: rgba(127,127,127,.16); padding: .12em .4em; border-radius: 4px;
+      font-size: .9em; word-break: break-all;
+    }
+    /* The spec is wide; never let it push the page sideways. */
+    #redoc, .note { overflow-x: auto; }
+    #fallback { display: none; padding: 1rem 1.5rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>AmberOne API</h1>
+      <p class="tag">Turn any website into a build-ready mobile or desktop app project.</p>
+      <div class="row">
+        <a class="btn" href="https://hq.amberoneai.com">Get an API key</a>
+        <a class="btn ghost" href="https://github.com/scubamike124/amberone-api">Source &amp; SDKs</a>
+        <a class="btn ghost" href="https://github.com/scubamike124/amberone-api/releases/latest">Downloads</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="note">
+    <p>
+      <strong>Evaluating is free.</strong> Keys beginning <code>wrap_test_</code>
+      run the full pipeline and are never billed.
+      <strong>You get a project, not a compiled app</strong> — nothing is signed
+      or submitted for you, so your signing keys never leave your machine.
+    </p>
+    <p>
+      Prefer Postman? Import via <em>Import → Link</em>:
+      <code>https://raw.githubusercontent.com/scubamike124/amberone-api/main/postman_collection.json</code>
+    </p>
+  </div>
+
+  <div id="fallback" class="note">
+    <p>
+      The interactive reference could not load. The raw specification is always
+      available at
+      <a href="https://hq.amberoneai.com/api/v1/openapi.json">hq.amberoneai.com/api/v1/openapi.json</a>
+      and a committed copy lives
+      <a href="https://github.com/scubamike124/amberone-api/blob/main/openapi.json">in the repository</a>.
+    </p>
+  </div>
+
+  <!--
+    Rendered from the live spec rather than a committed copy, so the reference
+    cannot drift from the running API. The endpoint is deliberately public and
+    sends Access-Control-Allow-Origin: *, which is what makes this work from a
+    different origin. If it is ever unreachable the fallback above appears
+    instead of an empty page.
+  -->
+  <redoc spec-url="https://hq.amberoneai.com/api/v1/openapi.json" hide-download-button></redoc>
+  <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+  <script>
+    // Redoc renders asynchronously; if nothing appears, say so rather than
+    // leaving a blank page that looks like the API has no documentation.
+    setTimeout(function () {
+      var el = document.querySelector("redoc");
+      if (!el || el.clientHeight < 120) {
+        document.getElementById("fallback").style.display = "block";
+      }
+    }, 6000);
+  </script>
+</body>
+</html>
