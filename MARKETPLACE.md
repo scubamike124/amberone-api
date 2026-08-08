@@ -16,7 +16,7 @@ owns the repo, OpenAPI, SDKs, and technical listing payloads.
 |---|---|---|---|---|
 | 1 | **GitHub public repo** | low | **in progress → live once push succeeds** | Storefront + docs + SDK source. Unblocks every other listing. |
 | 2 | **GitHub Releases** | low | next | Tag `v1.0.0` from CHANGELOG; attach nothing secret. |
-| 3 | **npm `@amberone/api`** | low | blocked on org/token | Package built; needs npm org `amberone` + publish token (`registry_publish`). |
+| 3 | **npm `amberone-api`** | low | blocked on org/token | Package built; needs npm org `amberone` + publish token (`registry_publish`). |
 | 4 | **PyPI `amberone-api`** | low | blocked on token | Package written; needs Twine token. |
 | 5 | **RapidAPI Hub** | medium | preparing | Buyers arrive intending to buy an API. Use OpenAPI import; decide billing share (~20%) deliberately. |
 | 6 | **GitHub Marketplace** | medium | preparing | Needs verified publisher; start review after public repo exists. |
@@ -38,7 +38,7 @@ owns the repo, OpenAPI, SDKs, and technical listing payloads.
 ### npm
 
 ```
-Package: @amberone/api
+Package: amberone-api
 Path:    sdk/javascript
 License: MIT
 ```

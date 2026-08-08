@@ -11,7 +11,7 @@
  *   GET  /api/wrap?id=job_…
  */
 import { NextResponse } from "next/server";
-import { AmberOneClient, AmberOneApiError } from "@amberone/api";
+import { AmberOneClient, AmberOneApiError } from "amberone-api";
 
 export const runtime = "nodejs"; // needs the server-only env var
 

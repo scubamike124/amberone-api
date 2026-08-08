@@ -40,7 +40,7 @@ First public packaging release as **AmberOne API** (repository `amberone-api`).
 
 ### SDKs
 
-- `@amberone/api` (JavaScript/TypeScript) — zero dependencies, typed errors,
+- `amberone-api` (JavaScript/TypeScript) — zero dependencies, typed errors,
   download hash verification. `WrapperClient` kept as an alias.
 - `amberone-api` (Python) — `requests` only, same behaviour.
 

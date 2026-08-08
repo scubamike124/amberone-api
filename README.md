@@ -90,11 +90,11 @@ for the whole path in one file.
 **JavaScript / TypeScript** — zero dependencies, uses built-in `fetch`.
 
 ```bash
-npm install @amberone/api
+npm install amberone-api
 ```
 
 ```ts
-import { AmberOneClient } from "@amberone/api";
+import { AmberOneClient } from "amberone-api";
 
 const client = new AmberOneClient({ apiKey: process.env.AMBERONE_API_KEY! });
 
@@ -258,7 +258,7 @@ data, runs on Amber HQ infrastructure — none of it lives here, and no credenti
 of any kind belong in this repo.
 
 ```
-sdk/javascript            TypeScript SDK (@amberone/api)
+sdk/javascript            TypeScript SDK (amberone-api)
 sdk/python                Python SDK (amberone-api)
 examples/                 Runnable quick starts
 openapi.json              Generated spec — do not hand-edit

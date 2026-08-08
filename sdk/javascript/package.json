@@ -1,5 +1,5 @@
 {
-  "name": "@amberone/api",
+  "name": "amberone-api",
   "version": "1.0.0",
   "description": "Official JavaScript/TypeScript SDK for the AmberOne API — turn any website into build-ready app projects.",
   "type": "module",

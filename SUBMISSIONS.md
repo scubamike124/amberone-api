@@ -95,8 +95,8 @@ Both SDKs are certified end to end: JavaScript 8/8, Python 10/10 in a clean
 virtualenv with a real job and a hash-verified download.
 
 ```
-@amberone/api    sdk/javascript    MIT
-amberone-api     sdk/python        MIT
+amberone-api   sdk/javascript   MIT   npm
+amberone-api   sdk/python       MIT   PyPI
 ```
 
 **Needs:** `NPM_TOKEN` and `PYPI_TOKEN` as repository secrets, or a PyPI trusted
