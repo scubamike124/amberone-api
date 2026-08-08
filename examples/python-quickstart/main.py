@@ -11,7 +11,7 @@ The whole path in one file: check the key, scan, wrap, wait, download.
 import os
 import sys
 
-from wrapper_api import WrapperApiError, WrapperClient
+from amberone_api import AmberOneApiError, AmberOneClient
 
 
 def main() -> int:
@@ -25,7 +25,7 @@ def main() -> int:
         return 1
 
     target = sys.argv[1]
-    client = WrapperClient(
+    client = AmberOneClient(
         api_key=api_key,
         base_url=os.environ.get("AMBERONE_BASE_URL", "https://hq.amberoneai.com"),
     )
@@ -78,7 +78,7 @@ def main() -> int:
         print("Unzip it and follow README.md to build.")
         return 0
 
-    except WrapperApiError as err:
+    except AmberOneApiError as err:
         # err.code is the stable string to branch on; the message may be reworded.
         print(f"\n{err.code}: {err.message}", file=sys.stderr)
         if err.request_id:

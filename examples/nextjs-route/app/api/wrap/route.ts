@@ -11,19 +11,19 @@
  *   GET  /api/wrap?id=job_…
  */
 import { NextResponse } from "next/server";
-import { AmberOneClient as WrapperClient, AmberOneApiError as WrapperApiError } from "@amberone/api";
+import { AmberOneClient, AmberOneApiError } from "@amberone/api";
 
 export const runtime = "nodejs"; // needs the server-only env var
 
 function client() {
   const apiKey = process.env.AMBERONE_API_KEY;
   if (!apiKey) throw new Error("AMBERONE_API_KEY is not set on the server.");
-  return new WrapperClient({ apiKey });
+  return new AmberOneClient({ apiKey });
 }
 
 /** Map an SDK error onto a response that is safe to show a browser. */
 function toResponse(err: unknown) {
-  if (err instanceof WrapperApiError) {
+  if (err instanceof AmberOneApiError) {
     // Pass the code through — your UI can branch on it — but not the raw
     // details, which may describe your account's limits.
     return NextResponse.json(
