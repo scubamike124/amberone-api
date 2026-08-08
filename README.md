@@ -16,6 +16,25 @@ curl -X POST https://hq.amberoneai.com/api/v1/jobs \
 Public repository: [scubamike124/amberone-api](https://github.com/scubamike124/amberone-api)  
 Accounts, billing, and keys: [hq.amberoneai.com](https://hq.amberoneai.com)
 
+> ### Status: pre-launch
+>
+> **The endpoints are not open for public sign-up yet.** If you run the call
+> above today it will return `401`, and that is not your key being wrong.
+>
+> Everything else here is real and finished: the spec is generated from the same
+> schemas the server validates against, both SDKs are certified end to end
+> against a live instance — real jobs submitted, artifacts downloaded, hashes
+> verified — and the examples run. Read them, import the collection, tell us
+> what is missing before it ships.
+>
+> Star or watch the repo to hear when keys open.
+
+**Try it without an account:** import
+[`postman_collection.json`](./postman_collection.json) into Postman. Every
+endpoint is there with a working example body. Set the `apiKey` variable when
+you have one — keys beginning `wrap_test_` run the full pipeline and are never
+billed.
+
 ---
 
 ## What you get, stated plainly
@@ -242,16 +261,33 @@ data, runs on Amber HQ infrastructure — none of it lives here, and no credenti
 of any kind belong in this repo.
 
 ```
-sdk/javascript      TypeScript SDK (@amberone/api)
-sdk/python          Python SDK (amberone-api)
-examples/           Runnable quick starts
-openapi.json        Generated spec — do not hand-edit
-MARKETPLACE.md      Listing plan and status
-CHANGELOG.md        Released changes
-SECURITY.md         Vulnerability reporting
+sdk/javascript            TypeScript SDK (@amberone/api)
+sdk/python                Python SDK (amberone-api)
+examples/                 Runnable quick starts
+openapi.json              Generated spec — do not hand-edit
+postman_collection.json   Postman v2.1, generated from the spec
+listing.json              Marketplace metadata: categories, tags, tiers
+MARKETPLACE.md            Listing plan and status
+CHANGELOG.md              Released changes
+SECURITY.md               Vulnerability reporting
+LICENSE                   MIT, covering this repository
+LICENSING.md              What MIT covers here and what it does not
 ```
+
+`openapi.json` and `postman_collection.json` are both generated from the same
+endpoint definitions the server validates against, so neither can drift from
+what the API actually accepts. A Postman collection maintained by hand drifts
+within a release, and a drifted collection is worse than none — it teaches a
+request shape the server rejects.
 
 ## Licence
 
-The SDKs and examples in this repository are MIT-licensed. Use of the hosted API
-is governed by the commercial terms you accept at signup on Amber HQ.
+**You may fork these SDKs, vendor them, and ship them inside a closed-source
+product. You may not resell access to the API itself without a separate
+agreement.**
+
+The code here is [MIT](./LICENSE). The hosted service is governed by the
+commercial terms you accept at signup. [`LICENSING.md`](./LICENSING.md) explains
+the split and why it exists — briefly, an SDK licensed under service terms drags
+those terms into whatever vendors it, and that is a dependency legal teams make
+you remove.
