@@ -26,11 +26,22 @@ Accounts, billing, and keys: [hq.amberoneai.com](https://hq.amberoneai.com)
 > pipeline and is never billed, so you can evaluate the whole thing before
 > spending anything.
 
-**Prefer to look before signing up?** Import
-[`postman_collection.json`](./postman_collection.json) into Postman. Every
-endpoint is there with a working example body. Set the `apiKey` variable when
-you have one — keys beginning `wrap_test_` run the full pipeline and are never
-billed.
+**Prefer to look before signing up?** Import the collection into Postman —
+paste this URL into **Import → Link**, no account of ours required:
+
+```
+https://raw.githubusercontent.com/scubamike124/amberone-api/main/postman_collection.json
+```
+
+Or download [`postman_collection.json`](./postman_collection.json) and drag it in.
+
+All 9 endpoints, each with a working example body, bearer auth pre-wired, and
+`baseUrl` already pointed at production. Set the `apiKey` variable when you have
+one — keys beginning `wrap_test_` run the full pipeline and are never billed, so
+the entire collection is runnable before you spend anything.
+
+The collection is generated from the same schemas the server validates against,
+so it cannot drift into teaching a request shape the API rejects.
 
 ---
 

@@ -39,42 +39,31 @@ there is real signup data, not before.
 
 ---
 
-## 1. Postman API Network — do this first
+## 1. Postman — skipped, deliberately
 
-Free, no payout account, reaches a very large developer audience, and it bills
-nothing so bundling is irrelevant to it.
+**Do not pay for this.** Postman made its free plan single-user in March 2026
+and moved workspace sharing behind Team (~$19/user/month). The upgrade prompt
+that appears when you try to share a collection is that change, not a
+misconfiguration.
 
-**Needs:** a Postman account and a public workspace. No payment setup.
+The reach was the entire argument for Postman, and it was worth having because
+it was free. A subscription bought before the first paying customer is the wrong
+order of operations.
 
-| Field | Value |
-|---|---|
-| Workspace name | `AmberOne` |
-| Workspace visibility | Public |
-| Collection | import `postman_collection.json` from this repo |
-| Category | Developer Tools |
-| Summary | Turn any website into build-ready mobile and desktop app projects. |
+**What was built anyway, and still works:** a workspace exists with the
+collection imported and verified — 4 folders, 9 requests, bearer auth, baseUrl
+and apiKey variables. It is private to the account. If a Team plan is ever
+justified for other reasons, publishing is one click from there:
+https://go.postman.co/workspace/919be24a-0cf3-4f76-84af-288315c36b8e
 
-**Workspace description:**
+**What replaces it, for nothing:** the collection is public on GitHub, so any
+developer can import it by URL without either side holding a Postman plan:
 
-> AmberOne turns a URL into a build-ready app project. Submit a site, get a
-> compatibility scan across HTTPS, PWA, mobile, SEO, accessibility and
-> performance, then download an Android, iOS, PWA, Electron or Capacitor project
-> you build and sign yourself.
->
-> Nothing is compiled, signed, or submitted on your behalf — which is the point.
-> Your signing keys never leave your machine, because we never hold them.
->
-> Every response uses one envelope: `{ ok: true, data, requestId }` or
-> `{ ok: false, error: { code, message }, requestId }`. Branch on `ok`, match on
-> `error.code`, quote `requestId` to support.
->
-> Keys beginning `wrap_test_` run the full pipeline and are never billed, so the
-> whole collection is runnable before you spend anything.
 
-**After publishing:** set the collection's first request to `GET /api/v1/account`.
-It proves the key works, shows plan limits in one round trip, and spends no quota.
 
----
+Postman → Import → Link → paste. That is most of the value of a listing, minus
+the discovery surface. Revisit if Postman changes the plan again or once revenue
+makes $19/month uninteresting.
 
 ## 2. GitHub — already live
 
@@ -235,7 +224,7 @@ without help.
 | Channel | Blocked on |
 |---|---|
 | GitHub | — **live** |
-| Postman | **one UI click** — workspace + collection created and verified |
+| Postman | skipped — free plan no longer allows sharing |
 | npm | one manual publish + OTP, then trusted publishing |
 | PyPI | `PYPI_TOKEN` |
 | Awesome REST / Public APIs | ready |
