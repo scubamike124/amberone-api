@@ -3,10 +3,10 @@
 Ready-to-paste copy for each channel. Nothing here needs writing at submission
 time — open the marketplace, work down the section, paste.
 
-**Prerequisite for every channel below:** the API must answer calls. Run
-`npm run deploy:verify` in Amber HQ first. It exits non-zero if the deploy has
-not taken, and marketplaces validate by fetching the spec and calling a test
-endpoint — a rejected submission is harder to retry than a delayed one.
+**The API is live** — `deploy:verify` reports 4 passed, 0 failed, and the customer
+path was walked end to end on production. Re-run it before any submission anyway:
+marketplaces validate by fetching the spec and calling a test endpoint, and a
+rejected submission is harder to retry than a delayed one.
 
 ---
 
@@ -99,11 +99,26 @@ amberone-api   sdk/javascript   MIT   npm
 amberone-api   sdk/python       MIT   PyPI
 ```
 
-**Needs:** `NPM_TOKEN` and `PYPI_TOKEN` as repository secrets, or a PyPI trusted
-publisher configured against this repo. Then push a `v*` tag — the workflow in
-`.github/workflows/publish.yml` does the rest, npm with `--provenance`.
+**npm needs a Classic *Automation* token — nothing else works.**
 
-Missing secrets skip their job rather than failing the run.
+The account enforces 2FA on publishing. Three token types behave differently:
+
+| Token type | Result |
+|---|---|
+| Granular / read-only | `403 Forbidden` — authenticates, cannot write |
+| Classic → Publish | `EOTP` — still demands a one-time password |
+| **Classic → Automation** | **publishes; bypasses 2FA by design** |
+
+Automation tokens exist precisely for CI, which is why they are the only kind
+that completes an unattended publish against a 2FA-enforced account. Generate at
+npmjs.com → Access Tokens → Generate New Token → Classic → Automation, and store
+it in the vault as `NPM_TOKEN`.
+
+PyPI has no equivalent obstacle: `PYPI_TOKEN`, or a trusted publisher configured
+once against this repo, and it publishes.
+
+Then push a `v*` tag — `.github/workflows/publish.yml` does the rest, npm with
+`--provenance`. Missing secrets skip their job rather than failing the run.
 
 ---
 
@@ -178,9 +193,10 @@ without help.
 | Channel | Blocked on |
 |---|---|
 | GitHub | — **live** |
-| Postman | deploy + a Postman account |
-| npm / PyPI | tokens |
-| Awesome REST / Public APIs | deploy |
-| RapidAPI | deploy + PayPal payout + pricing decision |
-| Zyla / APILayer | deploy + pricing decision |
-| Product Hunt | deploy + a clean stranger signup run |
+| Postman | **one UI click** — workspace + collection already created |
+| npm | a Classic **Automation** token (2FA blocks other types) |
+| PyPI | `PYPI_TOKEN` |
+| Awesome REST / Public APIs | ready |
+| RapidAPI | PayPal payout + reseller-pricing decision |
+| Zyla / APILayer | reseller-pricing decision |
+| Product Hunt | ready — stranger signup verified |
