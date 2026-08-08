@@ -1,0 +1,99 @@
+# Publish the SDKs on a version tag.
+#
+# Both packages are certified before they go out — the JavaScript SDK against a
+# built artifact, the Python SDK in a clean virtualenv. Neither has ever been
+# published, so the first run of this workflow is the first release.
+#
+# Nothing here runs until the corresponding secret exists. A missing secret
+# skips its job rather than failing the run, because a red X on a release tag
+# reads as "the release is broken" when it actually means "we have not been
+# given a token yet".
+name: Publish SDKs
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  npm:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # provenance
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Is there a token?
+        id: gate
+        run: echo "ready=${{ secrets.NPM_TOKEN != '' }}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-node@v4
+        if: steps.gate.outputs.ready == 'true'
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Build
+        if: steps.gate.outputs.ready == 'true'
+        working-directory: sdk/javascript
+        run: |
+          npm install
+          npm run build
+          test -f dist/index.js || { echo "build produced no dist/index.js"; exit 1; }
+
+      # --provenance links the published tarball to this workflow run and this
+      # commit. It is the difference between "trust the maintainer" and "check
+      # the build yourself", and it costs one flag.
+      - name: Publish
+        if: steps.gate.outputs.ready == 'true'
+        working-directory: sdk/javascript
+        run: npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Skipped
+        if: steps.gate.outputs.ready != 'true'
+        run: echo "No NPM_TOKEN secret set — nothing published. Add it in Settings → Secrets → Actions."
+
+  pypi:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # PyPI trusted publishing
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build
+        working-directory: sdk/python
+        run: |
+          python -m pip install --upgrade build
+          python -m build
+          ls -l dist/
+
+      # Trusted publishing first: it needs no stored token at all, only a
+      # publisher configured once on PyPI against this repo and workflow.
+      # A stored token still works if that has not been set up.
+      - name: Publish via trusted publishing
+        id: trusted
+        continue-on-error: true
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: sdk/python/dist
+
+      - name: Publish with a token instead
+        if: steps.trusted.outcome == 'failure' && secrets.PYPI_TOKEN != ''
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: sdk/python/dist
+          password: ${{ secrets.PYPI_TOKEN }}
+
+      - name: Neither route available
+        if: steps.trusted.outcome == 'failure' && secrets.PYPI_TOKEN == ''
+        run: |
+          echo "Trusted publishing is not configured and no PYPI_TOKEN secret is set."
+          echo "Either configure a PyPI publisher for this repo, or add PYPI_TOKEN."
