@@ -17,6 +17,10 @@ Documentation: [scubamike124.github.io/amberone-api](https://scubamike124.github
 Public repository: [scubamike124/amberone-api](https://github.com/scubamike124/amberone-api)  
 Accounts, billing, and keys: [hq.amberoneai.com](https://hq.amberoneai.com)
 
+> Looking for **cloud multi-step goals** (not site→app packaging)? That is a
+> **separate product**: [Amber Autonomous API](https://github.com/scubamike124/amber-autonomous-api)
+> at `/api/v1/autonomous/jobs`. Same keys; different endpoints and quotas.
+
 > ### Status: live
 >
 > The API is serving requests. Sign up at [Amber HQ](https://hq.amberoneai.com),
